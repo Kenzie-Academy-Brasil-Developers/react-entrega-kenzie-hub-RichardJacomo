@@ -2,13 +2,30 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useNavigate, Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import { Div } from "../../../Styles/Register";
+import { api } from "../..//../Services/Api";
 
 export const RegisterPage = () => {
+  const navigate = useNavigate();
+
   const formSchema = yup.object().shape({
     name: yup.string().required("Nome obrigatório"),
     email: yup.string().required("Email obrigatório").email("Email inválido"),
-    password: yup.string().required("Senha obrigatória"),
+    password: yup
+      .string()
+      .required("Senha obrigatória")
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Senha deve conter no mínimo 8 caracteres, uma letra, um número e um caractere especial"
+      ),
+    confirm_password: yup
+      .string()
+      .oneOf([yup.ref("password"), null], "Senhas devem ser iguais")
+      .required("Confirmação obrigatória"),
+
     bio: yup.string().required("Bio obrigatória"),
     contact: yup.string().required("Contato obrigatório"),
     course_module: yup.string().required("Módulo orbigatório"),
@@ -22,16 +39,35 @@ export const RegisterPage = () => {
     resolver: yupResolver(formSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const requestResult = (request) => {
+    console.log(request);
+    if (request.statusText === "Created") {
+      toast.success("Cadastro bem sucedido!");
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    }
+  };
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await api.post("/users", data);
+      requestResult(response);
+    } catch (error) {
+      toast.error("Cadastro mal sucedido!");
+      console.error(error);
+    }
   };
 
   return (
     <>
       <Div>
+        <ToastContainer />
         <div className="div-title-and-button">
           <h1 className="title-register">Kenzie Hub</h1>
-          <button className="button-back">Voltar</button>
+          <Link className="button-back" to="/">
+            Voltar
+          </Link>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <h2 className="register">Crie sua conta</h2>
@@ -39,42 +75,71 @@ export const RegisterPage = () => {
           <div className="div-name-register">
             <label htmlFor="name">Nome</label>
             <input placeholder="Digite aqui seu nome" {...register("name")} />
-            {errors.name?.message}
+            {errors.name?.message && (
+              <p className="error-msg">{errors.name.message}</p>
+            )}
           </div>
           <div className="div-email-register">
             <label htmlFor="email">Email</label>
             <input placeholder="Digite aqui seu email" {...register("email")} />
-            {errors.email?.message}
+            {errors.email?.message && (
+              <p className="error-msg">{errors.email.message}</p>
+            )}
           </div>
           <div className="div-pass-register">
             <label htmlFor="password">Senha</label>
             <input
+              type="password"
               placeholder="Digite aqui sua senha"
               {...register("password")}
             />
-            {errors.password?.message}
+            {errors.password?.message && (
+              <p className="error-msg">{errors.password.message}</p>
+            )}
           </div>
           <div className="div-pass-register-confirm">
             <label htmlFor="passwordConfirm">Senha</label>
-            <input placeholder="Confirme sua senha" />
-            {errors.password?.message}
+            <input
+              type="password"
+              placeholder="Confirme sua senha"
+              {...register("confirm_password")}
+            />
+            {errors.confirm_password?.message && (
+              <p className="error-msg">{errors.confirm_password.message}</p>
+            )}
           </div>
           <div className="div-bio">
             <label htmlFor="bio">Bio</label>
             <input placeholder="Fale sobre você" {...register("bio")} />
-            {errors.bio?.message}
+            {errors.bio?.message && (
+              <p className="error-msg">{errors.bio.message}</p>
+            )}
           </div>
           <div className="div-contact">
             <label htmlFor="contact">Contato</label>
             <input placeholder="Opção de contato" {...register("contact")} />
-            {errors.contact?.message}
+            {errors.contact?.message && (
+              <p className="error-msg">{errors.contact.message}</p>
+            )}
           </div>
           <div className="div-select">
             <p className="p-select">Selecionar módulo</p>
-            <select name="module" id="module" {...register("course_module")}>
-              <option value="m1">Primeiro Módulo</option>
+            <select
+              name="course_module"
+              id="module"
+              {...register("course_module")}
+            >
+              <option value="">Selecione o módulo</option>
+              <option value="Primeiro Módulo">Primeiro Módulo</option>
+              <option value="Segundo Módulo">Segundo Módulo</option>
+              <option value="Terceiro Módulo">Terceiro Módulo</option>
+              <option value="Quarto Módulo">Quarto Módulo</option>
+              <option value="Quinto Módulo">Quinto Módulo</option>
+              <option value="Sexto Módulo">Sexto Módulo</option>
             </select>
-            {errors.course_module?.message}
+            {errors.course_module?.message && (
+              <p className="error-msg">{errors.course_module.message}</p>
+            )}
           </div>
           <button className="button-register">Cadastrar</button>
         </form>

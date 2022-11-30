@@ -1,11 +1,22 @@
 import { HeaderContent } from "../../../Styles/Header";
+import { useNavigate, Link } from "react-router-dom";
 
 export const Header = () => {
+  const clearLocalStorage = () => {
+    window.localStorage.clear();
+  };
+
   return (
     <>
       <HeaderContent>
         <h1 className="logo">Kenzie Hub</h1>
-        <button className="button-logout">Sair</button>
+        <Link
+          onClick={() => clearLocalStorage()}
+          className="button-logout"
+          to="/"
+        >
+          Sair
+        </Link>
       </HeaderContent>
     </>
   );

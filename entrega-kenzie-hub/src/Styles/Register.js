@@ -29,6 +29,7 @@ export const Div = styled.div`
     color: white;
     padding: 8px;
     border-radius: var(--radius-03);
+    text-decoration: none;
   }
   form {
     display: flex;
@@ -94,7 +95,10 @@ export const Div = styled.div`
     font-size: var(--font-size-5);
     margin-bottom: 10px;
   }
-  div {
-    color: white;
+  .error-msg {
+    color: var(--negative);
+    font-size: var(--font-size-5);
+    text-align: center;
+    font-weight: 600;
   }
 `;

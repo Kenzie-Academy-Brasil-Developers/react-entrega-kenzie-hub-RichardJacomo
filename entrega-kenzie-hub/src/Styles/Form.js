@@ -47,8 +47,17 @@ export const Form = styled.form`
     border: none;
   }
   .button-register {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 20px;
+    border-radius: var(--radius-03);
     background-color: var(--grey-1);
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: var(--font-size-4);
   }
   label {
     color: white;
@@ -58,6 +67,14 @@ export const Form = styled.form`
   .advice {
     color: var(--grey-1);
     font-size: var(--font-size-5);
+    margin-bottom: 10px;
+  }
+  .error-msg {
+    color: var(--negative);
+    font-size: var(--font-size-5);
+    text-align: center;
+    font-weight: 600;
+    width: 100%;
     margin-bottom: 10px;
   }
 `;

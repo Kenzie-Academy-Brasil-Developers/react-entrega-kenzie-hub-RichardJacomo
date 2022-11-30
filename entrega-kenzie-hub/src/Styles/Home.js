@@ -10,7 +10,7 @@ export const DivHome = styled.div`
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid var(--grey-2);
-    padding: 30px 0 30px 0;
+    padding: 30px 10px 30px 10px;
   }
   .name-profile {
     font-size: var(--font-size-2);
@@ -23,7 +23,7 @@ export const DivHome = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 0 8px 0;
+    padding: 8px 10px 8px 10px;
   }
   .title-tech {
     font-size: var(--font-size-2);
@@ -41,6 +41,7 @@ export const DivHome = styled.div`
   .ul-tech {
     background-color: var(--grey-2);
     padding: 20px;
+    width: 100%;
   }
   .li-tech {
     background-color: #121214;
@@ -51,6 +52,7 @@ export const DivHome = styled.div`
     height: 45px;
     padding: 10px;
     border-radius: var(--radius-03);
+    width: 100%;
   }
   .div-level-and-delete {
     display: flex;
@@ -63,5 +65,16 @@ export const DivHome = styled.div`
   .text-level {
     font-size: var(--font-size-4);
     color: var(--grey-1);
+  }
+  .button-delete {
+    background-color: var(--grey-4);
+    border: none;
+  }
+  @media (max-width: 800px) {
+    .div-name-and-description {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
   }
 `;

@@ -1,9 +1,9 @@
 import { Signup } from "./Form/Form";
 
-export const LoginPage = () => {
+export const LoginPage = ({ setUser }) => {
   return (
     <>
-      <Signup />
+      <Signup setUser={setUser} />
     </>
   );
 };

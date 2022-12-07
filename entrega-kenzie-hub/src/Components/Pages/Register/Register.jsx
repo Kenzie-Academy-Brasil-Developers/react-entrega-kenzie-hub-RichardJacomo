@@ -40,7 +40,6 @@ export const RegisterPage = () => {
   });
 
   const requestResult = (request) => {
-    console.log(request);
     if (request.statusText === "Created") {
       toast.success("Cadastro bem sucedido!");
       setTimeout(() => {

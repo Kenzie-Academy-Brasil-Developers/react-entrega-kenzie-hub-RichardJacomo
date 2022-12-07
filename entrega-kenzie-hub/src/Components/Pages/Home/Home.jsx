@@ -1,8 +1,22 @@
 import { DivHome } from "../../../Styles/Home";
 import { Header } from "../Header/Header";
-import del from "../../../Assets/del.png";
+import { useContext } from "react";
+import { TechContext } from "../../../Contexts/index";
+import { CardTech } from "./CardTech/CardTech";
+import { FormModal } from "./Modal/Modal";
 
-export const HomePage = ({ user }) => {
+export const HomePage = () => {
+  const { user, modal, setModal } = useContext(TechContext);
+  // const [modal, setModal] = useState(false);
+
+  const modalStatus = (value) => {
+    if (!modal) {
+      setModal(value);
+    } else {
+      setModal(false);
+    }
+  };
+
   return (
     <DivHome>
       <Header />
@@ -13,45 +27,17 @@ export const HomePage = ({ user }) => {
       <main className="main-content">
         <div className="div-title-tech">
           <h1 className="title-tech">Tecnologias</h1>
-          <button className="button-tech-add">+</button>
+          <button
+            type="submit"
+            onClick={() => modalStatus(true)}
+            className="button-tech-add"
+          >
+            +
+          </button>
         </div>
+        {modal === true ? <FormModal /> : ""}
         <ul className="ul-tech">
-          <li className="li-tech">
-            <h2 className="tech">React.js</h2>
-            <div className="div-level-and-delete">
-              <p className="text-level">Intermediário</p>
-              <button className="button-delete">
-                <img src={del} alt="" />
-              </button>
-            </div>
-          </li>
-          <li className="li-tech">
-            <h2 className="tech">Next.js</h2>
-            <div className="div-level-and-delete">
-              <p className="text-level">Intermediário</p>
-              <button className="button-delete">
-                <img src={del} alt="" />
-              </button>
-            </div>
-          </li>
-          <li className="li-tech">
-            <h2 className="tech">Styled Components</h2>
-            <div className="div-level-and-delete">
-              <p className="text-level">Intermediário</p>
-              <button className="button-delete">
-                <img src={del} alt="" />
-              </button>
-            </div>
-          </li>
-          <li className="li-tech">
-            <h2 className="tech">JavaScript</h2>
-            <div className="div-level-and-delete">
-              <p className="text-level">Intermediário</p>
-              <button className="button-delete">
-                <img src={del} alt="" />
-              </button>
-            </div>
-          </li>
+          <CardTech></CardTech>
         </ul>
       </main>
     </DivHome>

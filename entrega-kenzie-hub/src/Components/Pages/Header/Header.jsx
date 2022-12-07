@@ -1,5 +1,5 @@
 import { HeaderContent } from "../../../Styles/Header";
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   const clearLocalStorage = () => {

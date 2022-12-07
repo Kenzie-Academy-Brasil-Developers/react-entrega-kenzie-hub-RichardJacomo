@@ -9,8 +9,11 @@ import { Form } from "../../../../Styles/Form";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
 import { api } from "../../../../Services/Api";
+import { UserContext } from "../../../../Contexts";
+import { useContext } from "react";
 
-export const Signup = ({ setUser }) => {
+export const Signup = () => {
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const formSchema = yup.object().shape({
@@ -33,7 +36,6 @@ export const Signup = ({ setUser }) => {
   });
 
   const requestResult = (request) => {
-    console.log(request);
     if (request.statusText === "OK") {
       toast.success("Login bem sucedido!");
       setTimeout(() => {
@@ -48,12 +50,8 @@ export const Signup = ({ setUser }) => {
       window.localStorage.clear();
       window.localStorage.setItem("@TOKEN", response.data.token);
       window.localStorage.setItem("@USERID", response.data.user.id);
-      window.localStorage.setItem(
-        "@USERDATA",
-        JSON.stringify(response.data.user)
-      );
-      setUser(response.data.user);
       requestResult(response);
+      setUser(response.data.user);
     } catch (error) {
       toast.error("Login mal sucedido!");
       console.error(error);

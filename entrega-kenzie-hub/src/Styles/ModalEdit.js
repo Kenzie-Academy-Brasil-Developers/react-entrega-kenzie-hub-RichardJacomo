@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 export const ModalEdit = styled.div`
-  width: 90%;
-  height: 35vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   position: absolute;
+  background-color: #1512128c;
+  transform: translate(-19.79px, -20px);
 
   .div-global {
     max-width: 340px;

@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const Modal = styled.div`
   width: 100%;
-  height: 40vh;
+  height: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   position: absolute;
+  background-color: #1512128c;
 
   .div-global {
     max-width: 340px;

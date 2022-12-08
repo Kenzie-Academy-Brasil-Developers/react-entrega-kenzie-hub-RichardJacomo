@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const Modal = styled.div`
-  width: 100vw;
+  width: 100%;
   height: 40vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  position: fixed;
+  position: absolute;
 
   .div-global {
     max-width: 340px;
@@ -71,5 +71,9 @@ export const Modal = styled.div`
   .button-send {
     background-color: var(--color-primary);
     color: white;
+  }
+  .error-msg {
+    color: var(--negative);
+    margin-bottom: 10px;
   }
 `;

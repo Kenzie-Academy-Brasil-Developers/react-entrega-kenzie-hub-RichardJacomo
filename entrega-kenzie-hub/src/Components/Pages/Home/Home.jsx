@@ -7,7 +7,6 @@ import { FormModal } from "./Modal/Modal";
 
 export const HomePage = () => {
   const { user, modal, setModal } = useContext(TechContext);
-  // const [modal, setModal] = useState(false);
 
   const modalStatus = (value) => {
     if (!modal) {

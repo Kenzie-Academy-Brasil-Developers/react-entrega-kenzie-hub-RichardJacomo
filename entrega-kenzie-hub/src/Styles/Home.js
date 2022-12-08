@@ -5,6 +5,10 @@ export const DivHome = styled.div`
   display: flex;
   flex-direction: column;
 
+  .main-content {
+    position: relative;
+  }
+
   .div-name-and-description {
     display: flex;
     justify-content: space-between;

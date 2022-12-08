@@ -66,6 +66,7 @@ export const Providers = ({ children }) => {
           setModalEdit,
           modalPlaceholder,
           setModalPlaceholder,
+          setUser,
         }}
       >
         {children}

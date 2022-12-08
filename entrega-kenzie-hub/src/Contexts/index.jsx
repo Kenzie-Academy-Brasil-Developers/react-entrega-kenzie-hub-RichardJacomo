@@ -19,6 +19,8 @@ export const Providers = ({ children }) => {
       const token = localStorage.getItem("@TOKEN");
       if (!token) {
         navigate("/login");
+      } else {
+        navigate("/home");
       }
 
       try {
@@ -31,7 +33,6 @@ export const Providers = ({ children }) => {
         setUser(data);
       } catch (error) {
         console.error(error);
-        // window.localStorage.clear();
       }
     }
     loadUser();

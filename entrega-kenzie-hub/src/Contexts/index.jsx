@@ -13,30 +13,29 @@ export const Providers = ({ children }) => {
   const [modal, setModal] = useState(false);
   const [modalEdit, setModalEdit] = useState(false);
   const [modalPlaceholder, setModalPlaceholder] = useState({});
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     async function loadUser() {
       const token = localStorage.getItem("@TOKEN");
       if (!token) {
-        navigate("/login");
+        navigate("/");
       } else {
         navigate("/home");
       }
-
       try {
         const { data } = await api.get("/profile", {
           headers: {
             authorization: `Bearer ${token}`,
           },
         });
-
         setUser(data);
       } catch (error) {
         console.error(error);
       }
     }
     loadUser();
-  }, [user]);
+  }, [refresh]);
 
   // funções de TechContext:
 
@@ -48,7 +47,11 @@ export const Providers = ({ children }) => {
           authorization: `Bearer ${token}`,
         },
       });
-
+      if (refresh === false) {
+        setRefresh(true);
+      } else {
+        setRefresh(false);
+      }
       setUser(data);
     } catch (error) {
       console.error(error);
@@ -68,6 +71,8 @@ export const Providers = ({ children }) => {
           modalPlaceholder,
           setModalPlaceholder,
           setUser,
+          refresh,
+          setRefresh,
         }}
       >
         {children}

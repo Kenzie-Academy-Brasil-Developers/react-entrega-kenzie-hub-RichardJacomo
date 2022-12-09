@@ -13,7 +13,6 @@ export const CardTech = () => {
   const openModalEdit = (value) => {
     setModalPlaceholder(value);
     modalEdit === true ? setModalEdit(false) : setModalEdit(true);
-    // pegar value.id e enviar na requisição e criar a requisição aqui
   };
 
   return (

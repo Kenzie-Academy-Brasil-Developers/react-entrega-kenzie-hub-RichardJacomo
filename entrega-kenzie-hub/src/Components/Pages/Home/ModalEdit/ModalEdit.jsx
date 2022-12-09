@@ -7,8 +7,14 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 export const FormModalEdit = () => {
-  const { setModalEdit, modalPlaceholder, setUser, deleteItem } =
-    useContext(TechContext);
+  const {
+    setModalEdit,
+    modalPlaceholder,
+    setUser,
+    deleteItem,
+    refresh,
+    setRefresh,
+  } = useContext(TechContext);
 
   const formSchema = yup.object().shape({
     status: yup.string().required("Status obrigatório"),
@@ -34,7 +40,11 @@ export const FormModalEdit = () => {
           },
         }
       );
-
+      if (refresh === false) {
+        setRefresh(true);
+      } else {
+        setRefresh(false);
+      }
       setUser(data);
     } catch (error) {
       console.error(error);
@@ -63,9 +73,9 @@ export const FormModalEdit = () => {
             <option value={modalPlaceholder.status}>
               {modalPlaceholder.status}
             </option>
-            <option value="iniciante">Iniciante</option>
-            <option value="intermediário">Intermediário</option>
-            <option value="avançado">Avançado</option>
+            <option value="Iniciante">Iniciante</option>
+            <option value="Intermediário">Intermediário</option>
+            <option value="Avançado">Avançado</option>
           </select>
           {errors.status?.message && (
             <p className="error-msg">{errors.status.message}</p>

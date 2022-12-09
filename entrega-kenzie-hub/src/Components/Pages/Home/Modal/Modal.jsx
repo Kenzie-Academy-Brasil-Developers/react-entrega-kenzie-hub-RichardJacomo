@@ -7,7 +7,7 @@ import * as yup from "yup";
 import { api } from "../../../../Services/Api";
 
 export const FormModal = () => {
-  const { setModal, setUser } = useContext(TechContext);
+  const { setModal, setUser, refresh, setRefresh } = useContext(TechContext);
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Tecnologia obrigatória"),
@@ -30,7 +30,11 @@ export const FormModal = () => {
           authorization: `Bearer ${token}`,
         },
       });
-
+      if (refresh === false) {
+        setRefresh(true);
+      } else {
+        setRefresh(false);
+      }
       setUser(data);
     } catch (error) {
       console.error(error);
@@ -59,9 +63,9 @@ export const FormModal = () => {
           )}
           <label htmlFor="name">Selecionar status</label>
           <select className="select-level" {...register("status")}>
-            <option value="iniciante">Iniciante</option>
-            <option value="intermediário">Intermediário</option>
-            <option value="avançado">Avançado</option>
+            <option value="Iniciante">Iniciante</option>
+            <option value="Intermediário">Intermediário</option>
+            <option value="Avançado">Avançado</option>
           </select>
           {errors.status?.message && (
             <p className="error-msg">{errors.status.message}</p>

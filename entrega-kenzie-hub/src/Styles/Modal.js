@@ -8,7 +8,7 @@ export const Modal = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  background-color: #1512128c;
+  background-color: rgba(18, 18, 20, 0.7);
 
   .div-global {
     max-width: 340px;

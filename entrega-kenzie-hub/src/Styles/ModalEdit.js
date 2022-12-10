@@ -8,7 +8,7 @@ export const ModalEdit = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
-  background-color: #1512128c;
+  background-color: rgba(18, 18, 20, 0.7);
   transform: translate(-19.79px, -20px);
 
   .div-global {

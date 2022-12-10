@@ -31,6 +31,9 @@ export const Div = styled.div`
     border-radius: var(--radius-03);
     text-decoration: none;
   }
+  .button-back:hover {
+    background-color: var(--grey-1);
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -45,10 +48,14 @@ export const Div = styled.div`
     margin-bottom: 20px;
     height: 40px;
     border-radius: var(--radius-03);
-    border: none;
     color: var(--white);
     padding-left: 10px;
     margin-top: 10px;
+    border: 1px solid var(--grey-1);
+  }
+  input:focus {
+    border-color: var(--color-primary);
+    outline: 0;
   }
   .button-register {
     width: 100%;
@@ -56,6 +63,9 @@ export const Div = styled.div`
     height: 40px;
     border-radius: var(--radius-03);
     border: none;
+  }
+  .button-register:hover {
+    background-color: var(--color-primary-2);
   }
   label {
     color: white;

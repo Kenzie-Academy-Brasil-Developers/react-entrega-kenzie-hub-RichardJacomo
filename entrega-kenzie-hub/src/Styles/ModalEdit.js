@@ -75,6 +75,9 @@ export const ModalEdit = styled.div`
     color: white;
     width: 60%;
   }
+  .button-send:hover {
+    background-color: var(--color-primary-2);
+  }
   .buttons-fotter {
     display: flex;
     justify-content: space-between;
@@ -83,5 +86,8 @@ export const ModalEdit = styled.div`
     width: 35%;
     color: white;
     background-color: var(--grey-1);
+  }
+  .button-del:hover {
+    background-color: var(--grey-2);
   }
 `;

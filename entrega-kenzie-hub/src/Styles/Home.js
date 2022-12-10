@@ -42,6 +42,9 @@ export const DivHome = styled.div`
     font-weight: 600;
     border-radius: var(--radius-03);
   }
+  .button-tech-add:hover {
+    background-color: var(--grey-1);
+  }
   .ul-tech {
     background-color: var(--grey-2);
     padding: 20px;
@@ -58,6 +61,9 @@ export const DivHome = styled.div`
     border-radius: var(--radius-03);
     width: 100%;
   }
+  .li-tech:hover {
+    background-color: var(--grey-3);
+  }
   .div-level-and-delete {
     display: flex;
     justify-content: center;
@@ -73,6 +79,10 @@ export const DivHome = styled.div`
   .button-delete {
     background-color: var(--grey-4);
     border: none;
+  }
+  .button-delete:hover {
+    background-color: var(--grey-1);
+    border-radius: var(--radius-03);
   }
   @media (max-width: 800px) {
     .div-name-and-description {

@@ -5,9 +5,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { api } from "../../../../Services/Api";
+import { toast, ToastContainer } from "react-toastify";
 
 export const FormModal = () => {
-  const { setModal, setUser, refresh, setRefresh } = useContext(TechContext);
+  const { setModal, user, setUser, refresh, setRefresh, setLoading } =
+    useContext(TechContext);
 
   const formSchema = yup.object().shape({
     title: yup.string().required("Tecnologia obrigatória"),
@@ -23,6 +25,7 @@ export const FormModal = () => {
   });
 
   async function onSubmit(body) {
+    setLoading(false);
     const token = localStorage.getItem("@TOKEN");
     try {
       const { data } = await api.post("/users/techs", body, {
@@ -35,14 +38,18 @@ export const FormModal = () => {
       } else {
         setRefresh(false);
       }
-      setUser(data);
+      toast.success("Tecnologia criada");
+      setLoading(true);
+      setUser(user);
     } catch (error) {
+      toast.error("Esta tecnologia já foi adicionada");
       console.error(error);
     }
   }
 
   return (
     <Modal>
+      <ToastContainer />
       <div className="div-global">
         <div className="div-title">
           <h1 className="title">Cadastrar Tecnologia</h1>

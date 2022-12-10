@@ -35,9 +35,13 @@ export const Form = styled.form`
     margin-bottom: 20px;
     height: 40px;
     border-radius: var(--radius-03);
-    border: none;
+    border: 1px solid var(--grey-1);
     color: var(--white);
     padding-left: 10px;
+  }
+  input:focus {
+    border-color: var(--color-primary);
+    outline: 0;
   }
   button {
     width: 100%;
@@ -58,6 +62,9 @@ export const Form = styled.form`
     align-items: center;
     text-decoration: none;
     font-size: var(--font-size-4);
+  }
+  .button-register:hover {
+    background-color: var(--grey-2);
   }
   label {
     color: white;

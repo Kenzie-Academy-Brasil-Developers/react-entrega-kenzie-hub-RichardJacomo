@@ -23,4 +23,7 @@ export const HeaderContent = styled.header`
     border-radius: var(--radius-03);
     text-decoration: none;
   }
+  .button-logout:hover {
+    background-color: var(--grey-1);
+  }
 `;

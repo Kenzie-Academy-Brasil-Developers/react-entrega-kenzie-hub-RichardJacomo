@@ -63,6 +63,11 @@ export const Modal = styled.div`
     background-color: var(--grey-2);
     color: white;
     margin-bottom: 20px;
+    border: 1px solid;
+  }
+  .input-modal:focus {
+    border-color: var(--color-primary);
+    outline: 0;
   }
   .select-level {
     margin-bottom: 20px;
@@ -72,6 +77,9 @@ export const Modal = styled.div`
   .button-send {
     background-color: var(--color-primary);
     color: white;
+  }
+  .button-send:hover {
+    background-color: var(--color-primary-2);
   }
   .error-msg {
     color: var(--negative);

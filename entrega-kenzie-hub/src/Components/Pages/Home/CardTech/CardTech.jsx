@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { TechContext } from "../../../../Contexts";
 import { Li } from "../../../../Styles/CardTech";
 import { FormModalEdit } from "../ModalEdit/ModalEdit";
+import { ToastContainer } from "react-toastify";
 
 export const CardTech = () => {
   const { user, deleteItem, modalEdit, setModalEdit, setModalPlaceholder } =
@@ -17,6 +18,7 @@ export const CardTech = () => {
 
   return (
     <>
+      <ToastContainer />
       {modalEdit === true ? <FormModalEdit /> : ""}
       {userTechs?.map((data) => (
         <Li key={data.id} className="li-tech">

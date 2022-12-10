@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect } from "react";
 import { api } from "../Services/Api";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { Loading } from "../Components/Pages/Home/Loading/Loading";
 
 export const UserContext = createContext({});
 
@@ -14,10 +16,12 @@ export const Providers = ({ children }) => {
   const [modalEdit, setModalEdit] = useState(false);
   const [modalPlaceholder, setModalPlaceholder] = useState({});
   const [refresh, setRefresh] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function loadUser() {
       const token = localStorage.getItem("@TOKEN");
+
       if (!token) {
         navigate("/");
       } else {
@@ -29,6 +33,7 @@ export const Providers = ({ children }) => {
             authorization: `Bearer ${token}`,
           },
         });
+        setLoading(false);
         setUser(data);
       } catch (error) {
         console.error(error);
@@ -40,9 +45,10 @@ export const Providers = ({ children }) => {
   // funções de TechContext:
 
   async function deleteItem(id) {
+    setLoading(false);
     const token = localStorage.getItem("@TOKEN");
     try {
-      const { data } = await api.delete(`/users/techs/${id}`, {
+      await api.delete(`/users/techs/${id}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -52,31 +58,38 @@ export const Providers = ({ children }) => {
       } else {
         setRefresh(false);
       }
-      setUser(data);
+      toast.success("Tecnologia deletada com sucesso");
+      setLoading(true);
+      setUser(user);
     } catch (error) {
       console.error(error);
     }
   }
 
   return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <TechContext.Provider
-        value={{
-          user,
-          deleteItem,
-          modal,
-          setModal,
-          modalEdit,
-          setModalEdit,
-          modalPlaceholder,
-          setModalPlaceholder,
-          setUser,
-          refresh,
-          setRefresh,
-        }}
-      >
-        {children}
-      </TechContext.Provider>
-    </UserContext.Provider>
+    <>
+      {loading === true ? <Loading /> : ""}
+      <UserContext.Provider value={{ user, setUser, loading, setLoading }}>
+        <TechContext.Provider
+          value={{
+            user,
+            deleteItem,
+            modal,
+            setModal,
+            modalEdit,
+            setModalEdit,
+            modalPlaceholder,
+            setModalPlaceholder,
+            setUser,
+            refresh,
+            setRefresh,
+            setLoading,
+            loading,
+          }}
+        >
+          {children}
+        </TechContext.Provider>
+      </UserContext.Provider>
+    </>
   );
 };

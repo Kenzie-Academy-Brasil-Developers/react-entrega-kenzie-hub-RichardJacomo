@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -7,8 +7,10 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { Div } from "../../../Styles/Register";
 import { api } from "../..//../Services/Api";
+import { UserContext } from "../../../Contexts";
 
 export const RegisterPage = () => {
+  const { setLoading } = useContext(UserContext);
   const navigate = useNavigate();
 
   const formSchema = yup.object().shape({
@@ -41,20 +43,23 @@ export const RegisterPage = () => {
 
   const requestResult = (request) => {
     if (request.statusText === "Created") {
-      toast.success("Cadastro bem sucedido!");
+      toast.success("Usuário cadastrado!");
       setTimeout(() => {
+        setLoading(false);
         navigate("/");
       }, 2000);
     }
   };
 
   const onSubmit = async (data) => {
+    setLoading(true);
     try {
       const response = await api.post("/users", data);
       requestResult(response);
     } catch (error) {
-      toast.error("Cadastro mal sucedido!");
+      toast.error("Ocorreu um erro no cadastro!");
       console.error(error);
+      setLoading(false);
     }
   };
 

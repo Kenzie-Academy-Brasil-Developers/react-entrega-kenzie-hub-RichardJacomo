@@ -13,7 +13,7 @@ import { UserContext } from "../../../../Contexts";
 import { useContext } from "react";
 
 export const Signup = () => {
-  const { setUser } = useContext(UserContext);
+  const { setUser, setLoading } = useContext(UserContext);
   const navigate = useNavigate();
 
   const formSchema = yup.object().shape({
@@ -40,11 +40,13 @@ export const Signup = () => {
       toast.success("Login bem sucedido!");
       setTimeout(() => {
         navigate("/home");
+        setLoading(false);
       }, 2000);
     }
   };
 
   const onSubmit = async (data) => {
+    setLoading(true);
     try {
       const response = await api.post("/sessions", data);
       window.localStorage.clear();
@@ -53,8 +55,9 @@ export const Signup = () => {
       requestResult(response);
       setUser(response.data.user);
     } catch (error) {
-      toast.error("Login mal sucedido!");
+      toast.error("Usuário não encontrado!");
       console.error(error);
+      setLoading(false);
     }
   };
 

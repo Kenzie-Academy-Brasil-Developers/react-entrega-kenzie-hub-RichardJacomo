@@ -93,6 +93,9 @@ export const Div = styled.div`
     border: none;
     color: var(--grey-1);
   }
+  #module:focus {
+    outline: none;
+  }
   .button-register {
     background-color: var(--color-primary);
     color: white;

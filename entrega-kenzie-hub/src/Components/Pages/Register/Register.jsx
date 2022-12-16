@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { Div } from "../../../Styles/Register";
 import { api } from "../..//../Services/Api";
-import { UserContext } from "../../../Contexts";
+import { UserContext } from "../../../Contexts/UserProvider";
 
 export const RegisterPage = () => {
   const { setLoading } = useContext(UserContext);

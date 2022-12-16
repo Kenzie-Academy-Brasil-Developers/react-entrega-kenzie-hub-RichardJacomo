@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { TechContext } from "../../../../Contexts";
+import { TechContext } from "../../../../Contexts/TechProvider";
 import { Modal } from "../../../../Styles/Modal";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";

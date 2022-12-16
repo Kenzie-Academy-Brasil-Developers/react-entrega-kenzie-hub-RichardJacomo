@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { TechContext } from "../../../../Contexts";
+import { TechContext } from "../../../../Contexts/TechProvider";
 import { api } from "../../../../Services/Api";
 import { ModalEdit } from "../../../../Styles/ModalEdit";
 import { yupResolver } from "@hookform/resolvers/yup";

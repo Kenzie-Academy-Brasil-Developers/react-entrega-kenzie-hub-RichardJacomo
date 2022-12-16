@@ -9,7 +9,7 @@ import { Form } from "../../../../Styles/Form";
 import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
 import { api } from "../../../../Services/Api";
-import { UserContext } from "../../../../Contexts";
+import { UserContext } from "../../../../Contexts/UserProvider";
 import { useContext } from "react";
 
 export const Signup = () => {
@@ -46,6 +46,7 @@ export const Signup = () => {
   };
 
   const onSubmit = async (data) => {
+    console.log(data);
     setLoading(true);
     try {
       const response = await api.post("/sessions", data);

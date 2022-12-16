@@ -3,15 +3,18 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { Providers } from "./Contexts/index";
+import { TechProvider } from "./Contexts/TechProvider";
+import { UserProvider } from "./Contexts/UserProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Providers>
-        <App />
-      </Providers>
+      <TechProvider>
+        <UserProvider>
+          <App />
+        </UserProvider>
+      </TechProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -1,7 +1,7 @@
 import { DivHome } from "../../../Styles/Home";
 import { Header } from "../Header/Header";
 import { useContext } from "react";
-import { TechContext } from "../../../Contexts/index";
+import { TechContext } from "../../../Contexts/TechProvider";
 import { CardTech } from "./CardTech/CardTech";
 import { FormModal } from "./Modal/Modal";
 

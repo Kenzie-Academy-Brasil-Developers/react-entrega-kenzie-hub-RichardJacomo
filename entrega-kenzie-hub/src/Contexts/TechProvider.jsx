@@ -4,12 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Loading } from "../Components/Pages/Home/Loading/Loading";
 
-export const UserContext = createContext({});
-
 export const TechContext = createContext({});
 
-export const Providers = ({ children }) => {
-  // funções e estados de UserContext:
+export const TechProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
@@ -42,8 +39,6 @@ export const Providers = ({ children }) => {
     loadUser();
   }, [refresh]);
 
-  // funções de TechContext:
-
   async function deleteItem(id) {
     setLoading(false);
     const token = localStorage.getItem("@TOKEN");
@@ -69,27 +64,25 @@ export const Providers = ({ children }) => {
   return (
     <>
       {loading === true ? <Loading /> : ""}
-      <UserContext.Provider value={{ user, setUser, loading, setLoading }}>
-        <TechContext.Provider
-          value={{
-            user,
-            deleteItem,
-            modal,
-            setModal,
-            modalEdit,
-            setModalEdit,
-            modalPlaceholder,
-            setModalPlaceholder,
-            setUser,
-            refresh,
-            setRefresh,
-            setLoading,
-            loading,
-          }}
-        >
-          {children}
-        </TechContext.Provider>
-      </UserContext.Provider>
+      <TechContext.Provider
+        value={{
+          user,
+          deleteItem,
+          modal,
+          setModal,
+          modalEdit,
+          setModalEdit,
+          modalPlaceholder,
+          setModalPlaceholder,
+          setUser,
+          refresh,
+          setRefresh,
+          setLoading,
+          loading,
+        }}
+      >
+        {children}
+      </TechContext.Provider>
     </>
   );
 };

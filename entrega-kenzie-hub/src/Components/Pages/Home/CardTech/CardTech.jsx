@@ -1,6 +1,6 @@
 import del from "../../../../Assets/del.png";
 import { useContext } from "react";
-import { TechContext } from "../../../../Contexts";
+import { TechContext } from "../../../../Contexts/TechProvider";
 import { Li } from "../../../../Styles/CardTech";
 import { FormModalEdit } from "../ModalEdit/ModalEdit";
 import { ToastContainer } from "react-toastify";

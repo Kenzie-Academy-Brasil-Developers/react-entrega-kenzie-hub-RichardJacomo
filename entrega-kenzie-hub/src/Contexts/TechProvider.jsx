@@ -22,18 +22,19 @@ export const TechProvider = ({ children }) => {
       if (!token) {
         navigate("/");
       } else {
-        navigate("/home");
-      }
-      try {
-        const { data } = await api.get("/profile", {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        });
-        setLoading(false);
-        setUser(data);
-      } catch (error) {
-        console.error(error);
+        try {
+          const { data } = await api.get("/profile", {
+            headers: {
+              authorization: `Bearer ${token}`,
+            },
+          });
+          setLoading(false);
+          setUser(data);
+          navigate("/home");
+        } catch (error) {
+          console.error(error);
+          navigate("/");
+        }
       }
     }
     loadUser();
